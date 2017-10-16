@@ -15,14 +15,8 @@ DEPENDS += "python"
 S = "${WORKDIR}"
 SRC_URI += "file://supermicro-x11.py"
 
-# the following is unnecessary.
-python() {
-	machine = d.getVar('MACHINE', True).capitalize() + '.py'
-	d.setVar('_config_in_skeleton', machine)
-}
-
 do_make_setup() {
-        cp ${S}/${_config_in_skeleton} \
+        cp ${S}/supermicro-x11.py \
                 ${S}/obmc_system_config.py
         cat <<EOF > ${S}/setup.py
 from distutils.core import setup
